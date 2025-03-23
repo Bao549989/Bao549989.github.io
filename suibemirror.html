@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上海对外经贸大学布局复现</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+
+        /* 固定页眉 */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #005aab;
+            color: white;
+            padding: 10px 20px;
+            z-index: 1000;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+
+        .search-icon {
+            color: white;
+        }
+
+        /* 学校标识区 */
+        .school-logo {
+            display: flex;
+            align-items: center;
+            margin: 80px 20px 20px;
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        .secondary-nav {
+            display: flex;
+            gap: 30px;
+            margin-left: 50px;
+        }
+
+        .secondary-nav a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        /* 校园要闻区 */
+        .news-section {
+            margin: 20px;
+        }
+
+        .news-title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .news-item {
+            float: left;
+            width: calc(33.33% - 20px);
+            margin: 10px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .news-item img {
+            width: 100%;
+            height: auto;
+        }
+
+        .news-content {
+            padding: 15px;
+        }
+
+        .news-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .news-date {
+            color: #888;
+            font-size: 14px;
+        }
+        footer {
+            background-color: #121d54;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 固定页眉 -->
+    <header>
+        <div class="top-nav">
+            <div>
+                <a href="#">学生</a>
+                <a href="#">教工</a>
+                <a href="#">校友</a>
+                <a href="#">访客</a>
+                <a href="#">无障碍阅读</a>
+                <a href="#">进入关怀版</a>
+            </div>
+            <div>
+                <a href="#">一网通办</a>
+                <a href="#">办事大厅</a>
+                <a href="#">邮箱</a>
+                <a href="#">VPN</a>
+                <a href="#">English</a>
+                <span class="search-icon">🔍</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 学校标识与二级导航 -->
+    <div class="school-logo">
+        <div class="logo">
+            <img src="https://t10.baidu.com/it/u=822477904,154995581&fm=30&app=106&f=PNG?w=640&h=256&s=8933C51287946DC05EE165C60300C0B2" alt="学校logo">
+        </div>
+        <nav class="secondary-nav">
+            <a href="#">学校概况</a>
+            <a href="#">机构设置</a>
+            <a href="#">师资队伍</a>
+            <a href="#">科学研究</a>
+            <a href="#">人才培养</a>
+            <a href="#">招生就业</a>
+            <a href="#">国际交流</a>
+            <a href="#">公开事项</a>
+        </nav>
+    </div>
+
+    <!-- 校园要闻 -->
+    <section class="news-section">
+        <h2 class="news-title">校园要闻</h2>
+        <div class="news-item">
+            <img src="https://example.com/news1.jpg" alt="新闻图片">
+            <div class="news-content">
+                <p class="news-title">学校召开党务工作例会</p>
+                <p class="news-date">2025-03-22</p>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://example.com/news1.jpg" alt="新闻图片">
+            <div class="news-content">
+                <p class="news-title">学校召开党务工作例会</p>
+                <p class="news-date">2025-03-22</p>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://example.com/news1.jpg" alt="新闻图片">
+            <div class="news-content">
+                <p class="news-title">学校召开党务工作例会</p>
+                <p class="news-date">2025-03-22</p>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://example.com/news1.jpg" alt="新闻图片">
+            <div class="news-content">
+                <p class="news-title">学校召开党务工作例会</p>
+                <p class="news-date">2025-03-22</p>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://example.com/news1.jpg" alt="新闻图片">
+            <div class="news-content">
+                <p class="news-title">学校召开党务工作例会</p>
+                <p class="news-date">2025-03-22</p>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://example.com/news1.jpg" alt="新闻图片">
+            <div class="news-content">
+                <p class="news-title">学校召开党务工作例会</p>
+                <p class="news-date">2025-03-22</p>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://example.com/news1.jpg" alt="新闻图片">
+            <div class="news-content">
+                <p class="news-title">学校召开党务工作例会</p>
+                <p class="news-date">2025-03-22</p>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://example.com/news1.jpg" alt="新闻图片">
+            <div class="news-content">
+                <p class="news-title">学校召开党务工作例会</p>
+                <p class="news-date">2025-03-22</p>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://example.com/news1.jpg" alt="新闻图片">
+            <div class="news-content">
+                <p class="news-title">学校召开党务工作例会</p>
+                <p class="news-date">2025-03-22</p>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://example.com/news1.jpg" alt="新闻图片">
+            <div class="news-content">
+                <p class="news-title">学校召开党务工作例会</p>
+                <p class="news-date">2025-03-22</p>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://example.com/news1.jpg" alt="新闻图片">
+            <div class="news-content">
+                <p class="news-title">学校召开党务工作例会</p>
+                <p class="news-date">2025-03-22</p>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://example.com/news1.jpg" alt="新闻图片">
+            <div class="news-content">
+                <p class="news-title">学校召开党务工作例会</p>
+                <p class="news-date">2025-03-22</p>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://example.com/news1.jpg" alt="新闻图片">
+            <div class="news-content">
+                <p class="news-title">学校召开党务工作例会</p>
+                <p class="news-date">2025-03-22</p>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://example.com/news1.jpg" alt="新闻图片">
+            <div class="news-content">
+                <p class="news-title">学校召开党务工作例会</p>
+                <p class="news-date">2025-03-22</p>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://example.com/news1.jpg" alt="新闻图片">
+            <div class="news-content">
+                <p class="news-title">学校召开党务工作例会</p>
+                <p class="news-date">2025-03-22</p>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://example.com/news1.jpg" alt="新闻图片">
+            <div class="news-content">
+                <p class="news-title">学校召开党务工作例会</p>
+                <p class="news-date">2025-03-22</p>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://example.com/news1.jpg" alt="新闻图片">
+            <div class="news-content">
+                <p class="news-title">学校召开党务工作例会</p>
+                <p class="news-date">2025-03-22</p>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://example.com/news1.jpg" alt="新闻图片">
+            <div class="news-content">
+                <p class="news-title">学校召开党务工作例会</p>
+                <p class="news-date">2025-03-22</p>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://example.com/news1.jpg" alt="新闻图片">
+            <div class="news-content">
+                <p class="news-title">学校召开党务工作例会</p>
+                <p class="news-date">2025-03-22</p>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://example.com/news1.jpg" alt="新闻图片">
+            <div class="news-content">
+                <p class="news-title">学校召开党务工作例会</p>
+                <p class="news-date">2025-03-22</p>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://example.com/news1.jpg" alt="新闻图片">
+            <div class="news-content">
+                <p class="news-title">学校召开党务工作例会</p>
+                <p class="news-date">2025-03-22</p>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://example.com/news1.jpg" alt="新闻图片">
+            <div class="news-content">
+                <p class="news-title">学校召开党务工作例会</p>
+                <p class="news-date">2025-03-22</p>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://example.com/news1.jpg" alt="新闻图片">
+            <div class="news-content">
+                <p class="news-title">学校召开党务工作例会</p>
+                <p class="news-date">2025-03-22</p>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="https://example.com/news2.jpg" alt="新闻图片">
+            <div class="news-content">
+                <p class="news-title">学校党委常委会专题学习中央八项规定精神</p>
+                <p class="news-date">2025-03-21</p>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <link rel="stylesheet" href="https://Bao549989.github.io/index.html"返回首页>
+        <p>版权所有 &copy; 上海对外经贸大学</p>
+    </footer>
+</body>
+</html>
