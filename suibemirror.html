@@ -40,22 +40,30 @@
             color: white;
         }
 
-        /* 学校标识区 */
-        .school-logo {
-            display: flex;
-            align-items: center;
-            margin: 80px 20px 20px;
-        }
+/* 学校标识区 */
+.school-logo {
+    position: fixed;
+    top: 55px; /* 与header高度一致 */
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    padding: 10px 20px;
+    z-index: 999;
+}
 
-        .logo img {
-            height: 60px;
-        }
+.logo img {
+    height: 55px;
+    margin-right: 30px;
+}
 
-        .secondary-nav {
-            display: flex;
-            gap: 30px;
-            margin-left: 50px;
-        }
+.secondary-nav {
+    position: static; /* 改为静态定位 */
+    display: flex;
+    gap: 25px;
+    margin-left: auto; /* 导航右对齐 */
+}
 
         .secondary-nav a {
             color: #333;
@@ -100,12 +108,13 @@
             color: #888;
             font-size: 14px;
         }
-        footer {
-            background-color: #121d54;
-            color: white;
-            text-align: center;
-            padding: 10px;
-        }
+/* 添加背景色 */
+         footer {
+        color: #181f3e;
+        text-align: center;
+        padding: 10px;
+        
+         }
     </style>
 </head>
 <body>
@@ -152,7 +161,7 @@
     <section class="news-section">
         <h2 class="news-title">校园要闻</h2>
         <div class="news-item">
-            <img src="https://example.com/news1.jpg" alt="新闻图片">
+            <img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.LMd-MHsDh5DOBdNFojBkiQAAAA?w=288&h=139&c=7&r=0&o=5&dpr=2&pid=1.7" alt="新闻图片">
             <div class="news-content">
                 <p class="news-title">学校召开党务工作例会</p>
                 <p class="news-date">2025-03-22</p>
@@ -320,9 +329,9 @@
             </div>
         </div>
     </section>
-    <footer>
+       <footer>
         <link rel="stylesheet" href="https://Bao549989.github.io/index.html"返回首页>
         <p>版权所有 &copy; 上海对外经贸大学</p>
-    </footer>
+       </footer>
 </body>
 </html>
