@@ -4,31 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .item {
+          margin: 5px;
+        }
+      </style>
 </head>
 <body>
-    <h1>登录</h1>
+    <h1>注册</h1>
     <form action="/submit"
     method ='POST'>
-    <label for="username">用户名:</label>
-    <input type="text" id="username" name="username" placeholder="用户名">
-    <br>
+    <div class="item">
+    <label for="username">昵称:</label>
+    <input type="text" id="username" name="username" placeholder="">
+    </div>
+    <div class="item">
     <label for="password">密码:</label>
     <input type="password" id="password" name="password" minlength="6">
-    <br>
+    </div>
+    <div class="item">
+        <span>邮箱:</span>
+        <input type="text" />
+        <select name="" id="">
+          <option value="">@qq.com</option>
+          <option value="">@163.com</option>
+          <option value="">@126.com</option>
+        </select>
+      </div>
+    <div class="item">
     <label>性别:</label>
     <input type="radio" id="male" name="gender" value="male">
     <label for="male">男</label>
     <input type="radio" id="female" name="gender" value="female">
     <label for="female">女</label>
-    <br>
+    </div>
+    <div class="item">
     <label>爱好:</label>
     <input type="checkbox" id="travel" name="hobby" value="travel">
     <label for="travel">旅游</label>
-    <input type="checkbox" id="reading" name="hobby" value="reading">
-    <label for="reading">阅读</label>
-    <br>
-    <input type="submit" value="提交">
-    <a href="https://bao549989.github.io/">点击跳转</a>
+    <input type="checkbox" id="photographing" name="hobby" value="photographing">
+    <label for="reading">摄影</label>
+    <input type="checkbox" id="sports" name="hobby" value="sports">
+    <label for="reading">运动</label>
+    </div>
+    <div class="item">
+        <div>
+            <span>个人简介:</span>
+        </div>
+        <textarea name="" id="" style="width: 100%; height: 150px; margin-top: 5px;" ></textarea>
+      </div>
+      <div class="item">
+        <span>上传个人照片:</span>
+        <input type="file" name="" id="">
+      </div>
+    <hr />
+    <div class="item">
+    <button type="submit" style="display: block; margin: 0 auto">
+      立即注册
+    </button>
+    </div>
 </form>
+<a href="https://Bao549989.github.io" target="_blank">返回</a>
 </body>
 </html>
