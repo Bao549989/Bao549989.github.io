@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,99 +25,192 @@
             z-index: 1000;
         }
 
-        .top-nav {
+       .top-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .top-nav a {
+       .top-nav a {
             color: white;
             text-decoration: none;
             margin-right: 20px;
         }
 
-        .search-icon {
+       .search-icon {
             color: white;
         }
 
-/* 学校标识区 */
-.school-logo {
-    position: fixed;
-    top: 55px; /* 与header高度一致 */
-    left: 0;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    background: #ffffff;
-    padding: 10px 20px;
-    z-index: 999;
-}
+       .section-title {
+            text-align: center;
+        }
 
-.logo img {
-    height: 55px;
-    margin-right: 30px;
-}
+        /* 学校标识区 */
+       .school-logo {
+            position: fixed;
+            top: 30px;
+            /* 与header高度一致 */
+            left: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            background: #ffffff;
+            padding: 10px 20px;
+            z-index: 999;
+        }
 
-.secondary-nav {
-    position: static; /* 改为静态定位 */
-    display: flex;
-    gap: 25px;
-    margin-left: auto; /* 导航右对齐 */
-}
+       .logo img {
+            height: 55px;
+            margin-right: 30px;
+        }
 
-        .secondary-nav a {
+       .secondary-nav {
+            position: static;
+            /* 改为静态定位 */
+            display: flex;
+            gap: 25px;
+            margin-left: auto;
+            /* 导航右对齐 */
+        }
+
+       .secondary-nav a {
             color: #333;
             text-decoration: none;
         }
 
-        /* 校园要闻区 */
-        .news-section {
-            margin: 20px;
+        /* 校园要闻区关键布局修改 */
+       .news-section {
+            margin-top: 160px;
+            /* 留出顶部导航空间 */
+            padding: 20px;
         }
 
-        .news-title {
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 20px;
+        /* 主网格容器，设置30px列间距 */
+       .news-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            /* 两列等分 */
+            grid-column-gap: 30px;
+            /* 关键：设置列间距30px */
+            grid-row-gap: 20px;
+            /* 行间距 */
         }
 
-        .news-item {
-            float: left;
-            width: calc(33.33% - 20px);
-            margin: 10px;
+        /* 主新闻区块 */
+       .main-news {
+            grid-column: 1;
+            /* 明确占据第一列 */
             border: 1px solid #eee;
-            border-radius: 5px;
+            border-radius: 8px;
             overflow: hidden;
         }
 
-        .news-item img {
-            width: 100%;
-            height: auto;
+        /* 右侧双新闻区块 */
+       .sub-grid {
+            grid-column: 2;
+            /* 明确占据第二列 */
+            display: grid;
+            grid-template-rows: repeat(2, 1fr);
+            /* 上下两个新闻区块 */
+            grid-row-gap: 20px;
+            /* 子新闻垂直间距 */
         }
 
-        .news-content {
+        /* 统一新闻卡片样式（新增子新闻类） */
+       .news-card {
+            position: relative;
+            transition: transform 0.3s ease;
+            background: white;
+            border: 1px solid #eee;
+            /* 统一边框 */
+            border-radius: 8px;
+        }
+
+        /* 修正HTML结构中的错位样式（原.sub-news改为通用.news-card） */
+       .news-card img {
+            width: 100%;
+            object-fit: cover;
+            border-bottom: 2px solid #005aab;
+        }
+
+        /* 尺寸差异处理（主新闻图片更高） */
+       .main-news img {
+            height: 400px;
+        }
+
+       .sub-grid.news-card img {
+            /* 子新闻图片高度 */
+            height: 190px;
+        }
+
+        /* 底部三栏布局 */
+       .bottom-grid {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 20px;
+            margin-top: 20px;
+        }
+
+        /* 统一图文样式 */
+       .news-content {
             padding: 15px;
         }
 
-        .news-title {
-            font-size: 16px;
-            margin-bottom: 10px;
+       .news-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 90, 171, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
         }
 
-        .news-date {
-            color: #888;
-            font-size: 14px;
+        /* 交互效果增强 */
+       .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
         }
-/* 添加背景色 */
-         footer {
-        color: #181f3e;
-        text-align: center;
-        padding: 10px;
-        
-         }
+
+        footer {
+            background-color: #003366; /* 深蓝色背景 */
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+       .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+       .logo img {
+            height: 50px;
+        }
+
+       .contact-info {
+            text-align: left;
+        }
+
+       .license-info {
+            text-align: right;
+        }
+
+       .app-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+       .app-icons img {
+            height: 30px;
+        }
     </style>
 </head>
+
 <body>
     <!-- 固定页眉 -->
     <header>
@@ -143,7 +237,8 @@
     <!-- 学校标识与二级导航 -->
     <div class="school-logo">
         <div class="logo">
-            <img src="https://t10.baidu.com/it/u=822477904,154995581&fm=30&app=106&f=PNG?w=640&h=256&s=8933C51287946DC05EE165C60300C0B2" alt="学校logo">
+            <img src="https://t10.baidu.com/it/u=822477904,154995581&fm=30&app=106&f=PNG?w=640&h=256&s=8933C51287946DC05EE165C60300C0B2"
+                alt="学校logo">
         </div>
         <nav class="secondary-nav">
             <a href="#">学校概况</a>
@@ -159,179 +254,95 @@
 
     <!-- 校园要闻 -->
     <section class="news-section">
-        <h2 class="news-title">校园要闻</h2>
-        <div class="news-item">
-            <img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.LMd-MHsDh5DOBdNFojBkiQAAAA?w=288&h=139&c=7&r=0&o=5&dpr=2&pid=1.7" alt="新闻图片">
-            <div class="news-content">
-                <p class="news-title">学校召开党务工作例会</p>
-                <p class="news-date">2025-03-22</p>
+        <h2 class="section-title">校园要闻</h2>
+        <!-- 主网格容器，包裹主新闻和子网格 -->
+        <div class="news-grid">
+            <!-- 主新闻区块 -->
+            <div class="news-card main-news">
+                <img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.LMd-MHsDh5DOBdNFojBkiQAAAA?w=288&h=139&c=7&r=0&o=5&dpr=2&pid=1.7"
+                    alt="中共上海对外经贸大学第一届委员会第二次全体会议">
+                <div class="news-content">
+                    <h3>中共上海对外经贸大学第一届委员会第二次全体会议召开</h3>
+                    <p class="news-date">2022-03-15</p>
+                </div>
+            </div>
+
+            <!-- 右侧双新闻区块（修正嵌套结构） -->
+            <div class="sub-grid">
+                <!-- 第一个子新闻 -->
+                <div class="news-card">
+                    <div class="news-tag">学术荣誉</div>
+                    <img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.LMd-MHsDh5DOBdNFojBkiQAAAA?w=288&h=139&c=7&r=0&o=5&dpr=2&pid=1.7"
+                        alt="获奖队伍">
+                    <div class="news-content">
+                        <h3>我校代表队荣获杰赛普国际法模拟法庭竞赛一等奖</h3>
+                        <p class="news-date">2022-03-15</p>
+                    </div>
+                </div>
+
+                <!-- 第二个子新闻 -->
+                <div class="news-card">
+                    <div class="news-tag">教学动态</div>
+                    <img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.LMd-MHsDh5DOBdNFojBkiQAAAA?w=288&h=139&c=7&r=0&o=5&dpr=2&pid=1.7"
+                        alt="在线教学">
+                    <div class="news-content">
+                        <h3>学校在线教学井然有序平稳推进</h3>
+                        <p class="news-date">2022-03-15</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="news-item">
-            <img src="https://example.com/news1.jpg" alt="新闻图片">
-            <div class="news-content">
-                <p class="news-title">学校召开党务工作例会</p>
-                <p class="news-date">2025-03-22</p>
+        <div class="news-grid">
+            <!-- 主新闻区块 -->
+            <div class="news-card main-news">
+                <img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.LMd-MHsDh5DOBdNFojBkiQAAAA?w=288&h=139&c=7&r=0&o=5&dpr=2&pid=1.7"
+                    alt="中共上海对外经贸大学第一届委员会第二次全体会议">
+                <div class="news-content">
+                    <h3>中共上海对外经贸大学第一届委员会第二次全体会议召开</h3>
+                    <p class="news-date">2022-03-15</p>
+                </div>
             </div>
-        </div>
-        <div class="news-item">
-            <img src="https://example.com/news1.jpg" alt="新闻图片">
-            <div class="news-content">
-                <p class="news-title">学校召开党务工作例会</p>
-                <p class="news-date">2025-03-22</p>
-            </div>
-        </div>
-        <div class="news-item">
-            <img src="https://example.com/news1.jpg" alt="新闻图片">
-            <div class="news-content">
-                <p class="news-title">学校召开党务工作例会</p>
-                <p class="news-date">2025-03-22</p>
-            </div>
-        </div>
-        <div class="news-item">
-            <img src="https://example.com/news1.jpg" alt="新闻图片">
-            <div class="news-content">
-                <p class="news-title">学校召开党务工作例会</p>
-                <p class="news-date">2025-03-22</p>
-            </div>
-        </div>
-        <div class="news-item">
-            <img src="https://example.com/news1.jpg" alt="新闻图片">
-            <div class="news-content">
-                <p class="news-title">学校召开党务工作例会</p>
-                <p class="news-date">2025-03-22</p>
-            </div>
-        </div>
-        <div class="news-item">
-            <img src="https://example.com/news1.jpg" alt="新闻图片">
-            <div class="news-content">
-                <p class="news-title">学校召开党务工作例会</p>
-                <p class="news-date">2025-03-22</p>
-            </div>
-        </div>
-        <div class="news-item">
-            <img src="https://example.com/news1.jpg" alt="新闻图片">
-            <div class="news-content">
-                <p class="news-title">学校召开党务工作例会</p>
-                <p class="news-date">2025-03-22</p>
-            </div>
-        </div>
-        <div class="news-item">
-            <img src="https://example.com/news1.jpg" alt="新闻图片">
-            <div class="news-content">
-                <p class="news-title">学校召开党务工作例会</p>
-                <p class="news-date">2025-03-22</p>
-            </div>
-        </div>
-        <div class="news-item">
-            <img src="https://example.com/news1.jpg" alt="新闻图片">
-            <div class="news-content">
-                <p class="news-title">学校召开党务工作例会</p>
-                <p class="news-date">2025-03-22</p>
-            </div>
-        </div>
-        <div class="news-item">
-            <img src="https://example.com/news1.jpg" alt="新闻图片">
-            <div class="news-content">
-                <p class="news-title">学校召开党务工作例会</p>
-                <p class="news-date">2025-03-22</p>
-            </div>
-        </div>
-        <div class="news-item">
-            <img src="https://example.com/news1.jpg" alt="新闻图片">
-            <div class="news-content">
-                <p class="news-title">学校召开党务工作例会</p>
-                <p class="news-date">2025-03-22</p>
-            </div>
-        </div>
-        <div class="news-item">
-            <img src="https://example.com/news1.jpg" alt="新闻图片">
-            <div class="news-content">
-                <p class="news-title">学校召开党务工作例会</p>
-                <p class="news-date">2025-03-22</p>
-            </div>
-        </div>
-        <div class="news-item">
-            <img src="https://example.com/news1.jpg" alt="新闻图片">
-            <div class="news-content">
-                <p class="news-title">学校召开党务工作例会</p>
-                <p class="news-date">2025-03-22</p>
-            </div>
-        </div>
-        <div class="news-item">
-            <img src="https://example.com/news1.jpg" alt="新闻图片">
-            <div class="news-content">
-                <p class="news-title">学校召开党务工作例会</p>
-                <p class="news-date">2025-03-22</p>
-            </div>
-        </div>
-        <div class="news-item">
-            <img src="https://example.com/news1.jpg" alt="新闻图片">
-            <div class="news-content">
-                <p class="news-title">学校召开党务工作例会</p>
-                <p class="news-date">2025-03-22</p>
-            </div>
-        </div>
-        <div class="news-item">
-            <img src="https://example.com/news1.jpg" alt="新闻图片">
-            <div class="news-content">
-                <p class="news-title">学校召开党务工作例会</p>
-                <p class="news-date">2025-03-22</p>
-            </div>
-        </div>
-        <div class="news-item">
-            <img src="https://example.com/news1.jpg" alt="新闻图片">
-            <div class="news-content">
-                <p class="news-title">学校召开党务工作例会</p>
-                <p class="news-date">2025-03-22</p>
-            </div>
-        </div>
-        <div class="news-item">
-            <img src="https://example.com/news1.jpg" alt="新闻图片">
-            <div class="news-content">
-                <p class="news-title">学校召开党务工作例会</p>
-                <p class="news-date">2025-03-22</p>
-            </div>
-        </div>
-        <div class="news-item">
-            <img src="https://example.com/news1.jpg" alt="新闻图片">
-            <div class="news-content">
-                <p class="news-title">学校召开党务工作例会</p>
-                <p class="news-date">2025-03-22</p>
-            </div>
-        </div>
-        <div class="news-item">
-            <img src="https://example.com/news1.jpg" alt="新闻图片">
-            <div class="news-content">
-                <p class="news-title">学校召开党务工作例会</p>
-                <p class="news-date">2025-03-22</p>
-            </div>
-        </div>
-        <div class="news-item">
-            <img src="https://example.com/news1.jpg" alt="新闻图片">
-            <div class="news-content">
-                <p class="news-title">学校召开党务工作例会</p>
-                <p class="news-date">2025-03-22</p>
-            </div>
-        </div>
-        <div class="news-item">
-            <img src="https://example.com/news1.jpg" alt="新闻图片">
-            <div class="news-content">
-                <p class="news-title">学校召开党务工作例会</p>
-                <p class="news-date">2025-03-22</p>
-            </div>
-        </div>
-        <div class="news-item">
-            <img src="https://example.com/news2.jpg" alt="新闻图片">
-            <div class="news-content">
-                <p class="news-title">学校党委常委会专题学习中央八项规定精神</p>
-                <p class="news-date">2025-03-21</p>
+
+            <!-- 右侧双新闻区块（修正嵌套结构） -->
+            <div class="sub-grid">
+                <!-- 第一个子新闻 -->
+                <div class="news-card">
+                    <div class="news-tag">学术荣誉</div>
+                    <img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.LMd-MHsDh5DOBdNFojBkiQAAAA?w=288&h=139&c=7&r=0&o=5&dpr=2&pid=1.7"
+                        alt="获奖队伍">
+                    <div class="news-content">
+                        <h3>我校代表队荣获杰赛普国际法模拟法庭竞赛一等奖</h3>
+                        <p class="news-date">2022-03-15</p>
+                    </div>
+                </div>
+
+                <!-- 第二个子新闻 -->
+                <div class="news-card">
+                    <div class="news-tag">教学动态</div>
+                    <img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.LMd-MHsDh5DOBdNFojBkiQAAAA?w=288&h=139&c=7&r=0&o=5&dpr=2&pid=1.7"
+                        alt="在线教学">
+                    <div class="news-content">
+                        <h3>学校在线教学井然有序平稳推进</h3>
+                        <p class="news-date">2022-03-15</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-       <footer>
-        <link rel="stylesheet" href="https://Bao549989.github.io/index.html"返回首页>
-        <p>版权所有 &copy; 上海对外经贸大学</p>
-       </footer>
+    <footer>
+        <div class="footer-content">
+            <div class="logo">
+                <img src="https://t10.baidu.com/it/u=822477904,154995581&fm=30&app=106&f=PNG?w=640&h=256&s=8933C51287946DC05EE165C60300C0B2" alt="学校logo">
+            </div>
+            <div class="contact-info">
+                <p>版权所有©2018</p>
+                <p>地址：上海市松江区文翔路1900号，邮编：201620</p>
+                <p>古北校区地址：上海市长宁区古北路620号，邮编：200336</p>
+                <p>闵行校区地址：上海市闵行区漕宝路3349号，邮编：200235</p>
+            </div>
+            <a href="https://Bao549989.github.io">返回 </a>
+        </div>
+    </footer>
 </body>
+
 </html>
