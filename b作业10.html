@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      .active {
+            color: red;
+        }
+
+      .title {
+            background-color: blueviolet;
+        }
+
+        #nav {
+            position: fixed;
+            right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="nav">
+    </ul>
+    <h1 class="title" id="1">1111</h1>
+    <p>jasdfjkahsdf ahsfhalfhdlj asdkfjhasd</p>
+    <p>jasdfjkahsdf ahsfhalfhdlj asdkfjhasd</p>
+    <p>jasdfjkahsdf ahsfhalfhdlj asdkfjhasd</p>
+    <h1 class="title" id="2">2222</h1>
+    <p>jasdfjkahsdf ahsfhalfhdlj asdkfjhasd</p>
+    <h1 class="title" id="3">3333</h1>
+    <p>jasdfjkahsdf ahsfhalfhdlj asdkfjhasd</p>
+    <script>
+        // 获取所有的h1.title元素
+        let titles = document.querySelectorAll('h1.title');
+        let nav = document.getElementById('nav');
+
+        // 遍历h1.title元素生成菜单
+        titles.forEach(title => {
+            let id = title.id;
+            let text = title.textContent;
+            let newLi = document.createElement('li');
+            let newA = document.createElement('a');
+            newA.href = `#${id}`;
+            newA.textContent = text;
+            newLi.appendChild(newA);
+            nav.appendChild(newLi);
+        });
+
+        let navtitle = document.querySelectorAll("#nav a");
+        let toffset = [];
+        titles.forEach(t => {
+            toffset.push(t.offsetTop);
+        });
+        console.log(toffset);
+
+        document.body.onscroll = function () {
+            let woffset = document.documentElement.scrollTop;
+            for (let i = toffset.length - 1; i >= 0; i--) {
+                if (toffset[i] <= woffset + 50) {
+                    for (let j = 0; j < navtitle.length; j++) {
+                        if (j == i) {
+                            navtitle[j].className = "active";
+                        } else {
+                            navtitle[j].className = "";
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

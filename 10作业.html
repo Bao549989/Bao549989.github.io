@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>图片轮播</title>
+  <style>
+    /* 轮播图主容器 */
+    #container {
+      position: relative;
+      /* 相对定位，用于内部绝对定位元素 */
+      width: 600px;
+      /* 可视区域宽度 */
+      height: 400px;
+      /* 可视区域高度 */
+      border: 3px solid #333;
+      /* 边框 */
+      overflow: hidden;
+      /* 超出部分隐藏 */
+    }
+
+    /* 图片列表容器 */
+    #list {
+      position: absolute;
+      /* 绝对定位 */
+      z-index: 1;
+      /* 层级，位于按钮下方 */
+      width: 2400px;
+      /* 总宽度（4张图片x600px） */
+      height: 400px;
+      /* 高度与容器一致 */
+      left: 0px;
+      /* 初始位置 */
+      transition: left 0.5s ease-in-out;
+    }
+
+    /* 每张图片的样式 */
+    #list img {
+      float: left;
+      /* 图片向左浮动排列 */
+      width: 600px;
+      /* 每张图片宽度 */
+      height: 400px;
+      /* 每张图片高度 */
+    }
+
+    /* 指示器按钮容器 */
+    #buttons {
+      position: absolute;
+      /* 绝对定位 */
+      left: 250px;
+      /* 水平居中 */
+      bottom: 20px;
+      /* 底部距离 */
+      z-index: 2;
+      /* 层级，位于图片上方 */
+      height: 10px;
+      /* 高度 */
+      width: 100px;
+      /* 宽度 */
+    }
+
+    /* 每个指示器圆点 */
+    #buttons span {
+      float: left;
+      /* 向左浮动排列 */
+      margin-right: 5px;
+      /* 右边距 */
+      width: 10px;
+      /* 宽度 */
+      height: 10px;
+      /* 高度 */
+      border: 1px solid #fff;
+      /* 白色边框 */
+      border-radius: 50%;
+      /* 圆形 */
+      background: #333;
+      /* 默认背景色 */
+      cursor: pointer;
+      /* 鼠标指针变为手形 */
+    }
+
+    /* 当前激活的指示器 */
+    #buttons .on {
+      background: orangered;
+      /* 激活状态颜色 */
+    }
+
+    /* 左右箭头基本样式 */
+    .arrow {
+      position: absolute;
+      /* 绝对定位 */
+      top: 180px;
+      /* 垂直居中 */
+      z-index: 2;
+      /* 层级 */
+      display: none;
+      /* 默认隐藏 */
+      width: 40px;
+      /* 宽度 */
+      height: 40px;
+      /* 高度 */
+      font-size: 36px;
+      /* 字体大小 */
+      font-weight: bold;
+      /* 加粗 */
+      line-height: 39px;
+      /* 行高（垂直居中） */
+      text-align: center;
+      /* 水平居中 */
+      color: #fff;
+      /* 白色文字 */
+      background-color: RGBA(0, 0, 0, 0.3);
+      /* 半透明背景 */
+      cursor: pointer;
+      /* 鼠标指针变为手形 */
+    }
+
+    /* 鼠标悬停时箭头样式 */
+    .arrow:hover {
+      background-color: RGBA(0, 0, 0, 0.7);
+      /* 背景变深 */
+    }
+
+    /* 鼠标悬停容器时显示箭头 */
+    #container:hover .arrow {
+      display: block;
+      /* 显示箭头 */
+    }
+
+    /* 左侧箭头特定样式 */
+    #prev {
+      left: 20px;
+      /* 左侧距离 */
+      text-decoration: none;
+      /* 去除下划线 */
+    }
+
+    /* 右侧箭头特定样式 */
+    #next {
+      right: 20px;
+      /* 右侧距离 */
+      text-decoration: none;
+      /* 去除下划线 */
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 轮播图主容器 -->
+  <div id="container">
+    <!-- 图片列表 -->
+    <div id="list">
+      <img src="img/1.jpg" /> <!-- 第一张图片 -->
+      <img src="img/2.jpg" /> <!-- 第二张图片 -->
+      <img src="img/3.jpg" /> <!-- 第三张图片 -->
+      <img src="img/4.jpg" /> <!-- 第四张图片 -->
+    </div>
+
+    <!-- 指示器按钮 -->
+    <div id="buttons">
+      <span index="1" class="on"></span> <!-- 第一个点（默认激活） -->
+      <span index="2"></span> <!-- 第二个点 -->
+      <span index="3"></span> <!-- 第三个点 -->
+      <span index="4"></span> <!-- 第四个点 -->
+    </div>
+
+    <!-- 向左箭头 -->
+    <a href="javascript:;" id="prev" class="arrow">&lt;</a>
+    <!-- 向右箭头 -->
+    <a href="javascript:;" id="next" class="arrow">&gt;</a>
+  </div>
+
+  <script>
+    // 单张图片的宽度（与容器宽度一致）
+    let width = 600;
+
+    // 获取DOM元素
+    let list = document.getElementById("list");   // 图片列表容器
+    let prev = document.getElementById("prev");   // 向左箭头
+    let next = document.getElementById("next");   // 向右箭头
+    let buttons = document.getElementById("buttons").getElementsByTagName("span"); // 获取所有圆点
+    let num = list.children.length; // 获取图片数量
+
+    /**
+     * 轮播图动画函数
+     * @param {number} offset - 移动方向（1表示向右，-1表示向左）
+     */
+    function animate(offset) {
+      // 获取当前left值（parseInt去掉"px"转为数字）
+      let left = parseInt(getComputedStyle(list).left);
+
+      // 计算新的left值
+      let newLeft = left - offset * width;
+
+      // 设置新的left值
+      list.style.left = newLeft + "px";
+
+      // 如果到达最后一张图片之后，回到第一张
+      if (newLeft <= -num * width) {
+        list.style.left = "0px";
+      }
+
+      // 如果在第一张图片继续向左，跳到最后一张
+      if (newLeft > 0) {
+        list.style.left = -(num - 1) * width + "px";
+      }
+
+      // 更新圆点激活状态
+      updateButtons();
+    }
+
+    // 更新圆点激活状态
+    function updateButtons() {
+      // 计算当前显示的图片索引
+      let currentIndex = Math.abs(parseInt(list.style.left || 0) / width);
+
+      // 遍历所有圆点
+      for (let i = 0; i < buttons.length; i++) {
+        // 移除所有圆点的'on'类
+        buttons[i].className = "";
+        // 给当前圆点添加'on'类
+        if (i === currentIndex) {
+          buttons[i].className = "on";
+        }
+      }
+    }
+
+    // 向左箭头点击事件
+    prev.onclick = function () {
+      animate(-1); // 向左移动
+    };
+
+    // 向右箭头点击事件
+    next.onclick = function () {
+      animate(1); // 向右移动
+    };
+
+    // 圆点点击事件
+    for (let i = 0; i < buttons.length; i++) {
+      buttons[i].onclick = function () {
+        // 计算需要移动的偏移量
+        let currentIndex = Math.abs(parseInt(list.style.left || 0) / width);
+        let offset = i - currentIndex;
+
+        // 移动图片列表
+        animate(offset);
+      };
+    }
+    let timer = setInterval(
+      function () {
+        animate(1); // 每隔5秒向右移动
+      }, 5000);
+    container.onmouseenter = function () { clearInterval(timer); }
+    container.onmouseleave = function () {
+      timer = setInterval(function () {
+        animate(1);
+      }, 5000);
+    }
+  </script>
+</body>
+
+</html>
