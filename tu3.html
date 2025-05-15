@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>交互式饼图</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+        canvas { 
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="1200" height="800"></canvas>
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var cxt = canvas.getContext("2d");
+        var w = canvas.width, h = canvas.height;
+        var cx = w / 2, cy = h / 2, baseR = 200;
+
+        var data = [
+            { title: "apple", value: 0.24, color: "green", description: "苹果公司(Apple Inc.)是全球顶尖的消费电子产品制造商,以iPhone和Mac系列闻名." },
+            { title: "三星", value: 0.26, color: "yellow", description: "三星电子是韩国最大的跨国企业，智能手机市场份额长期位居全球前列." },
+            { title: "华为", value: 0.13, color: "orange", description: "华为技术有限公司是中国领先的通信设备和智能手机制造商." },
+            { title: "锤子", value: 0.17, color: "red", description: "锤子科技以独特的工业设计和Smartisan OS操作系统著称." },
+            { title: "小米", value: 0.08, color: "purple", description: "小米公司以高性价比的智能手机和智能家居产品快速占领市场." },
+            { title: "其他", value: 0.12, color: "cyan", description: "包括魅族、中兴等品牌的智能手机产品." }
+        ];
+
+        var startAngle = Math.PI;
+        data.forEach(item => {
+            item.startAngle = startAngle;
+            item.endAngle = startAngle + 2 * Math.PI * item.value;
+            startAngle = item.endAngle;
+        });
+
+        let currentHoverItem = null;
+        let mouseX = 0, mouseY = 0;
+
+        function drawPieChart() {
+            cxt.clearRect(0, 0, w, h);
+            data.forEach(item => {
+                item.percentage = (item.value * 100).toFixed(0) + "%";
+                const r = item.hover ? baseR * 1.1 : baseR;
+                cxt.globalAlpha = item.hover ? 1 : 0.5; 
+                cxt.beginPath();
+                cxt.moveTo(cx, cy);
+                cxt.arc(cx, cy, r, item.startAngle, item.endAngle);
+                cxt.closePath();
+                cxt.fillStyle = item.color;
+                cxt.fill();
+                cxt.strokeStyle = "black";
+                cxt.stroke();
+
+                const midAngle = (item.startAngle + item.endAngle) / 2;
+                const tx = cx + Math.cos(midAngle) * (r + 40);
+                const ty = cy + Math.sin(midAngle) * (r + 40);
+                cxt.fillStyle = "#000";
+                cxt.fillText(item.title, tx, ty);
+            });
+            cxt.globalAlpha = 1;
+
+            // 绘制信息框
+            if (currentHoverItem) {
+                drawTooltip(currentHoverItem);
+            }
+        }
+
+        function drawTooltip(item) {
+            const padding = 10;
+            const lineHeight = 20;
+            const titleFont = "bold 16px Arial";
+            const descFont = "14px Arial";
+            const maxWidth = 250;
+
+            // 测量文本尺寸
+            cxt.font = titleFont;
+            const titleWidth = cxt.measureText(item.title).width;
+            cxt.font = descFont;
+            const descWidth = cxt.measureText(item.description).width;
+            
+            // 计算信息框尺寸
+            const contentWidth = Math.max(Math.max(titleWidth, descWidth), maxWidth);
+            const boxWidth = contentWidth + padding * 2;
+            const boxHeight = lineHeight * 2 + padding * 2;
+
+            // 计算显示位置（避开边缘）
+            let x = mouseX + 15;
+            let y = mouseY + 15;
+            if (x + boxWidth > w) x = mouseX - boxWidth - 15;
+            if (y + boxHeight > h) y = mouseY - boxHeight - 15;
+
+            // 绘制背景
+            cxt.fillStyle = "rgba(0, 0, 0, 0.8)";
+            cxt.beginPath();
+            cxt.roundRect(x, y, boxWidth, boxHeight, 5);
+            cxt.fill();
+
+            // 绘制文字
+            cxt.fillStyle = "white";
+            cxt.font = titleFont;
+            cxt.fillText(`${item.title} (${item.percentage})`, x + padding, y + padding + lineHeight);
+            cxt.font = descFont;
+            cxt.fillText(item.description, x + padding, y + padding + lineHeight * 2);
+        }
+
+        canvas.addEventListener("mousemove", e => {
+            const rect = canvas.getBoundingClientRect();
+            mouseX = e.clientX - rect.left;
+            mouseY = e.clientY - rect.top;
+            const x = mouseX - cx;
+            const y = mouseY - cy;
+            const distance = Math.sqrt(x*x + y*y);
+
+            currentHoverItem = null;
+            
+            data.forEach(item => {
+                item.hover = false;
+                if (distance > baseR * 1.1) return;
+
+                let angle = Math.atan2(y, x);
+                if (angle < 0) angle += 2 * Math.PI;
+
+                const start = item.startAngle % (2 * Math.PI);
+                const end = item.endAngle % (2 * Math.PI);
+                
+                if (start > end) {
+                    if (angle >= start || angle <= end) {
+                        item.hover = true;
+                        if (!currentHoverItem) currentHoverItem = item;
+                    }
+                } else {
+                    if (angle >= start && angle <= end) {
+                        item.hover = true;
+                        if (!currentHoverItem) currentHoverItem = item;
+                    }
+                }
+            });
+
+            drawPieChart();
+        });
+
+        drawPieChart();
+    </script>
+</body>
+</html>
