@@ -1,0 +1,286 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.96);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.search-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#searchInput {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    transition: transform 0.3s ease;
+}
+
+button:hover {
+    animation: jello-horizontal 0.9s both;
+}
+
+#searchBtn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#searchBtn:hover {
+    background-color: #45a049;
+}
+
+.stats {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 4px;
+    flex: 1;
+    min-width: 150px;
+}
+
+.stat-title {
+    font-size: 14px;
+    color: #666;
+}
+
+.stat-value {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table,
+th,
+td {
+    border: 1px solid #ddd;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+.price-cell {
+    color: #e4393c;
+    font-weight: bold;
+}
+
+.rating {
+    color: #ff9900;
+}
+
+.comments {
+    color: #0066cc;
+}
+
+.product-link {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.product-link:hover {
+    text-decoration: underline;
+}
+
+.error {
+    color: #e4393c;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+}
+
+.loading {
+    text-align: center;
+    padding: 20px;
+}
+
+.truncated-name {
+    display: inline-block;
+    max-width: 400px;
+    /* 保留增加的最大宽度 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: top;
+}
+
+.full-name {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 200px;
+    max-width: 400px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 12px 16px;
+    z-index: 1;
+    border-radius: 4px;
+    margin-top: -5px;
+    margin-left: 10px;
+    border: 1px solid #ddd;
+}
+
+.name-container:hover .full-name {
+    display: block;
+}
+
+#switchBtn {
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#switchBtn:hover {
+    background-color: #0056b3;
+}
+
+/* 果冻水平动画效果 */
+@keyframes jello-horizontal {
+    0% {
+        transform: scale3d(1, 1, 1);
+    }
+
+    30% {
+        transform: scale3d(1.25, 0.75, 1);
+    }
+
+    40% {
+        transform: scale3d(0.75, 1.25, 1);
+    }
+
+    50% {
+        transform: scale3d(1.15, 0.85, 1);
+    }
+
+    65% {
+        transform: scale3d(0.95, 1.05, 1);
+    }
+
+    75% {
+        transform: scale3d(1.05, 0.95, 1);
+    }
+
+    100% {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+.scoreboard-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 1.5rem 0;
+}
+
+.scoreboard-btn {
+    background: linear-gradient(135deg, #4a6fa5 0%, #2575fc 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 25px 40px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.scoreboard-btn:hover {
+    background: linear-gradient(135deg, #3a5a85 0%, #1a65e0 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.scoreboard-btn:active {
+    transform: translateY(1px);
+}
+
+.scoreboard-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* CPU按钮特定样式 */
+#cpuScoreBtn {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+}
+
+#cpuScoreBtn:hover {
+    background: linear-gradient(135deg, #e65c5c 0%, #e67c7c 100%);
+}
+
+/* GPU按钮特定样式 */
+#gpuScoreBtn {
+    background: linear-gradient(135deg, #4ecdc4 0%, #7ee8e0 100%);
+}
+
+#gpuScoreBtn:hover {
+    background: linear-gradient(135deg, #40b8b0 0%, #6ed8d0 100%);
+}
+
+/* 响应式调整 */
+@media (max-width: 600px) {
+    .scoreboard-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+.video-bg {
+    position: fixed; /* 固定定位，覆盖整个视口 */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover; /* 保持视频比例，覆盖容器 */
+    z-index: -1; /* 置于内容层下方 */
+  }

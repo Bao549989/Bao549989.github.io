@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>硬件市场数据</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <video autoplay muted loop poster="背景.png" class="video-bg">
+        <source src="背景.mp4" type="video/mp4">
+      </video>
+    <div class="container">
+        <header>
+            <h1>硬件市场数据</h1>
+            <p>实时展示显卡和CPU产品信息</p>
+            <p>(N/A)表示该商品价格面议/未上架/已经停产</p>
+        </header>
+        <div class="scoreboard-buttons">
+            <a href="https://cpu.zol.com.cn/soc/" target="_blank" class="scoreboard-btn" id="cpuScoreBtn">
+                CPU天梯图
+            </a>
+            <a href="https://vga.zol.com.cn/soc/" target="_blank" class="scoreboard-btn" id="gpuScoreBtn">
+                显卡天梯图
+            </a>
+        </div>
+        <button id="switchBtn">切换到CPU数据</button>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="搜索产品名称...">
+            <button id="searchBtn">搜索</button>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-title">总产品数</div>
+                <div class="stat-value" id="totalProducts">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">平均价格</div>
+                <div class="stat-value" id="avgPrice">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">平均评分</div>
+                <div class="stat-value" id="avgRating">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">当前时间</div>
+                <div class="stat-value" id="updateTime">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">数据库最后修改时间</div>
+                <div class="stat-value" id="databaseLastUpdate">--</div>
+            </div>
+        </div>
+
+        <div id="content">
+            <div class="loading">加载中...</div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+
+</body>
+</html>
